@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>What's for lunch?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+  <style type="text/css">
+    .jumbotron{
+      font-size: 35px;
+      color:#ab2318;
+      background-color: white;
+      text-align: center;
+      font-weight: 700;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+      font-family: 'Open Sans', sans-serif;
+
+    }
+
+    .container-fluid { 
+      margin: auto;
+      text-align: center;
+      background-size: cover;
+      width:100%;
+      height: 100%;
+      z-index:2;
+      background-color: white;
+      position:fixed;
+      border-radius: 25px;
+      border: 2px #f7d79b;
+      font-family: 'Open Sans', sans-serif;
+
+    }
+
+    .form-control{
+      width: 50%;
+      background-color: #f4f4f4;
+      border-style: solid;
+      border-color: #d43f3a;
+      padding: 5px;
+      margin: auto;
+      border-radius: 0px;
+      font-family: 'Open Sans', sans-serif;
+
+    }
+
+    .panel{
+      border: 0px;
+      border-top: 5px solid #f4f4f4;
+    }
+
+    #add-order-line-btn{
+	    background-color: #d9534f;
+      border-color: #d43f3a;
+      color:white;
+    }
+  </style>
+    
+</head>
+<body>
+
+  <div class="container-fluid" id="popup" >
+    <header>Secret Code Confirmation Page</header>
+    <div id="addOrderSecretCode" data-parsley-validate="" required="">
+      <p><p>
+        <input type="text" id=confirmCode class="form-control" required="" placeholder="Your Code Here"></p>
+    </div>
+    
+    <button id ="submitCode" class="btn btn-primary btn-danger btn-lg width-290">Submit Code</button>
+  </div>
+
+
+<!--   <div class='container'> -->
+  <div class = 'jumbotron'>
+    
+  </div>
+<!--   </div> -->
+  
+
+
+	<div class='container'>
+		<div class="panel panel-default">
+  			<div class="panel-body">
+				<form id="orderForm" data-parsley-validate="">
+				  	<div class="form-group">
+					    <label>Name</label>
+					    <input type="text" class="form-control" id="order-line-name-input" required="" placeholder="John">
+					</div>
+				  	<div class="form-group">
+					    <label>Item</label>
+					    <input type="text" class="form-control" id="order-line-item-input" required="" placeholder="Tacos">
+					</div>
+					<div class="form-group">
+						<label>Quantity</label>
+						<select class="form-control">
+							  <option>1</option>
+						  	<option>2</option>
+						  	<option>3</option>
+						  	<option>4</option>
+						  	<option>5</option>
+						</select>
+            <style>
+            label{
+              font-family: 'Open Sans', sans-serif;
+            }
+            </style>
+					</div>
+
+
+
+          <button id='add-order-line-btn' type="button" class="btn btn-default"> Submit </button>
+
+           <a href="/menu"> <input type="button" class = "btn btn-default" value="Home" ></a>
+          <style>
+          a{
+          font-family: 'Open Sans', sans-serif;
+          }
+          </style> 
+
+
+					<!-- <button id='add-order-line-btn' type="button" class="btn btn-default">Submit</button> -->
+				</form>
+  			</div>
+		</div>
+	</div>
+
+
+
+
+
+<!-- 
+          <button id='add-order-line-btn' type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+  Submit
+</button>
+ -->
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <style>
+          .modal-header{
+            font-family: 'Open Sans', sans-serif;
+          }
+        </style>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Order Confirmation</h4>
+        </div>
+        <div class="modal-body">
+        <style>
+          .modal-body{
+            font-family: 'Open Sans', sans-serif;
+          }
+        </style>
+          <span id='order-name'></span>, your Line Has Been Added!
+          <div>Item: <span id='order-item'></span></div>
+          <div>Quantity: <span id='order-qty'></span></div>
+        </div>
+        <div class="modal-footer">
+        <style>
+          .modal-footer{
+            font-family: 'Open Sans', sans-serif;
+          }
+        </style>
+          <a href="/menu"><button type="button" class="btn btn-danger" >Finish</button></a> <!-- data-dismiss="modal" -->
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Add New Item</button> <!-- data-dismiss="modal" -->
+          <a href="/confirming"><button type="button" class="btn btn-danger">View Order</button></a>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  	  	
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+      <script type="text/javascript" src="/assets/js/app.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.js"></script> 
+
+</body>
+</html>
